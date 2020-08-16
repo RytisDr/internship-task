@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const Films = () => {
-  //const [endP, setEndP] = useState("https://swapi.dev/api/people/");
-  const [films, setFilms] = useState(null);
+  const [endP, setEndP] = useState("https://swapi.dev/api/people/");
   const [characters, setCharacters] = useState(null);
   const [searchQ, setSearchQ] = useState(null);
   const [searchError, setSearchError] = useState(null);
@@ -13,21 +12,21 @@ const Films = () => {
       .then((data) => {
         if (data.count) {
           setCharacters(data.results);
-          console.log(data);
           setSearchError(null);
         } else {
           setCharacters(null);
           setSearchError("Not Found, Try Again.");
         }
-      });
+      })
+      .then();
   };
   const search = (e) => {
     e.preventDefault();
-    fetchEndP(`https://swapi.dev/api/people/?search=${searchQ}`);
+    setEndP(`https://swapi.dev/api/people/?search=${searchQ}`);
   };
-  /*   useEffect(() => {
+  useEffect(() => {
     fetchEndP(endP);
-  }, []); */
+  }, [endP]);
   return (
     <>
       <h1>Search for a Character</h1>
@@ -43,10 +42,16 @@ const Films = () => {
       </form>
       {characters &&
         characters.map((character) => (
-          <div className="character" key={character.name}>
-            <h1>{character.name}</h1>
-          </div>
+          <Link
+            key={character.name}
+            to={`character/${character.url.replace(/^\D+/g, "")}`}
+          >
+            <div className="character">
+              <h1>{character.name}</h1>
+            </div>
+          </Link>
         ))}
+
       {searchError && <h2>{searchError}</h2>}
     </>
   );
