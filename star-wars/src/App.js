@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./style/style.scss";
-import Films from "./components/Films";
+import Characters from "./components/Characters";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           </Router>
         </nav>
       </header>
-      <Films></Films>
+      <Characters></Characters>
     </div>
   );
 }
