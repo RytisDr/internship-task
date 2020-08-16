@@ -11,12 +11,12 @@ const Films = () => {
     fetch(endP)
       .then((e) => e.json())
       .then((data) => {
-        if (data) {
+        if (data.count) {
           setCharacters(data.results);
-          console.log(data.results);
+          console.log(data);
           setSearchError(null);
         } else {
-          ///Fix this
+          setCharacters(null);
           setSearchError("Not Found, Try Again.");
         }
       });
