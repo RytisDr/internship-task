@@ -30,28 +30,32 @@ const Films = () => {
   }, [endP]);
   return (
     <>
-      <h1>Search for a Character</h1>
+      <h1 id="mainHeading">Character Handbook</h1>
+      <h2 id="searchH2">Search for a Character</h2>
       <form action="">
         <input
           className="textInput"
           type="text"
+          placeholder="..."
           onChange={(e) => setSearchQ(e.target.value)}
         />
         <button type="submit" className="submitBtn" onClick={(e) => search(e)}>
           Search
         </button>
       </form>
-      {characters &&
-        characters.map((character) => (
-          <Link
-            key={character.name}
-            to={`character/${character.url.replace(/^\D+/g, "")}`}
-          >
-            <div className="character">
-              <h1>{character.name}</h1>
-            </div>
-          </Link>
-        ))}
+      <div className="results">
+        {characters &&
+          characters.map((character) => (
+            <Link
+              key={character.name}
+              to={`character/${character.url.replace(/^\D+/g, "")}`}
+            >
+              <div className="character">
+                <h1>{character.name}</h1>
+              </div>
+            </Link>
+          ))}
+      </div>
 
       {searchError && <h2>{searchError}</h2>}
     </>

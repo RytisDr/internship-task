@@ -36,7 +36,9 @@ const CharacterPage = () => {
   }, []);
   return (
     <>
-      <Link to={"/"}>Back</Link>
+      <Link id="back" to={"/"}>
+        Back
+      </Link>
       {character && (
         <div className="characterInfo">
           <h1>{character.name}</h1>
@@ -44,9 +46,11 @@ const CharacterPage = () => {
           <h2>Mass: {character.mass} kg</h2>
           <h2>Eye color: {character.eye_color}</h2>
           <h2>Is in:</h2>
-          {character.films.map((film) => (
-            <p key={film}>{film}</p>
-          ))}
+          <ul>
+            {character.films.map((film) => (
+              <li key={film}>{film}</li>
+            ))}
+          </ul>
         </div>
       )}
     </>
