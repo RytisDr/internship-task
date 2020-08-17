@@ -25,6 +25,7 @@ const Films = () => {
     e.preventDefault();
     setEndP(`https://swapi.dev/api/people/?search=${searchQ}`);
   };
+  //Begin here
   useEffect(() => {
     fetchEndP(endP);
   }, [endP]);
@@ -57,7 +58,7 @@ const Films = () => {
           ))}
       </div>
 
-      {searchError && <h2>{searchError}</h2>}
+      {searchError && <h2 id="error">{searchError}</h2>}
     </>
   );
 };

@@ -1,3 +1,4 @@
+//General
 html,
 body {
   margin: 0;
@@ -14,20 +15,16 @@ a,
 textarea {
   font-family: "Open Sans", sans-serif;
 }
+///////////////////////
+//HOME page
+///////////////////////
 #mainHeading {
   margin-left: 20px;
 }
-#back {
-  text-decoration: none;
-  color: black;
-  border: solid 1px black;
-  padding: 10px;
-  font-size: 15pt;
-}
-
 .results,
 #searchH2,
-form {
+form,
+#error {
   margin-left: 50px;
   a {
     text-decoration: none;
@@ -39,10 +36,7 @@ form {
     background-color: black;
   }
 }
-.characterInfo {
-  width: 40vw;
-  margin: auto;
-}
+
 form {
   input {
     width: 250px;
@@ -72,4 +66,32 @@ form {
   }
   padding-bottom: 30px;
   border-bottom: 2px solid black;
+}
+
+///////////////////////
+//Character Subpage
+///////////////////////
+#back {
+  text-decoration: none;
+  color: black;
+  border: solid 1px black;
+  border-left: none;
+  padding: 10px;
+  font-size: 15pt;
+  margin-top: 20px;
+  display: block;
+  width: 33vw;
+  text-align: right;
+}
+#back:hover {
+  color: white;
+  background-color: black;
+}
+
+.characterInfo {
+  width: 40vw;
+  margin: auto;
+}
+li {
+  font-size: 16pt;
 }
