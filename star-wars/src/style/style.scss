@@ -66,6 +66,10 @@ form {
     color: white;
     background-color: black;
   }
+  button:focus {
+    outline: none;
+    border-radius: 0;
+  }
   padding-bottom: 30px;
   border-bottom: 2px solid black;
 }
