@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const Films = () => {
+  //Endpoint is in the state to re-use the fetch function.
   const [endP, setEndP] = useState("https://swapi.dev/api/people/");
   const [characters, setCharacters] = useState(null);
   const [searchQ, setSearchQ] = useState(null);

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, Redirect } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 const CharacterPage = () => {
   const [character, setCharacter] = useState(null);
-  const [loading, setLoading] = useState(false);
+  //id from url
   const { id } = useParams();
   const filmsArray = [];
   const fetchCharacterinfo = () => {
-    setLoading(true);
     fetch(`https://swapi.dev/api/people/${id}/`)
       .then((e) => e.json())
       .then((character) => {
@@ -14,6 +13,7 @@ const CharacterPage = () => {
       });
 
     const fetchFilms = (character) => {
+      // Promise to make sure that state is only changed when the array is finished in forEach, resolved.
       const promise = new Promise((resolve, reject) => {
         character.films.forEach((film, index, array) => {
           fetch(film)
@@ -24,13 +24,13 @@ const CharacterPage = () => {
             });
         });
       });
+      //As soon as promise is resolved (array filled), the films are applied and state is changed.
       promise.then(() => {
         character.films = filmsArray;
         setCharacter(character);
       });
     };
   };
-
   useEffect(() => {
     fetchCharacterinfo();
   }, []);
@@ -43,8 +43,9 @@ const CharacterPage = () => {
           <h2>Height: {character.height} cm</h2>
           <h2>Mass: {character.mass} kg</h2>
           <h2>Eye color: {character.eye_color}</h2>
+          <h2>Is in:</h2>
           {character.films.map((film) => (
-            <h2>{film}</h2>
+            <p key={film}>{film}</p>
           ))}
         </div>
       )}
