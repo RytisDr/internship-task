@@ -14,18 +14,19 @@ const CharacterPage = () => {
       });
 
     const fetchFilms = (character) => {
-      character.films.forEach((film) => {
-        fetch(film)
-          .then((e) => e.json())
-          .then((film) => {
-            filmsArray.push(film.title);
-          })
-          .then(() => {
-            character.films = filmsArray;
-            setTimeout(() => {
-              setCharacter(character);
-            }, 1000);
-          });
+      const promise = new Promise((resolve, reject) => {
+        character.films.forEach((film, index, array) => {
+          fetch(film)
+            .then((e) => e.json())
+            .then((film) => {
+              filmsArray.push(film.title);
+              if (index === array.length - 1) resolve();
+            });
+        });
+      });
+      promise.then(() => {
+        character.films = filmsArray;
+        setCharacter(character);
       });
     };
   };
@@ -42,10 +43,9 @@ const CharacterPage = () => {
           <h2>Height: {character.height} cm</h2>
           <h2>Mass: {character.mass} kg</h2>
           <h2>Eye color: {character.eye_color}</h2>
-          {character.films.map((e) => (
-            <h2>{e}</h2>
+          {character.films.map((film) => (
+            <h2>{film}</h2>
           ))}
-          <h2>{console.log(character.films)}</h2>
         </div>
       )}
     </>
