@@ -10,7 +10,6 @@ function App() {
       <Router>
         <Switch>
           <Route path={`/character/:id`} component={CharacterPage} />
-
           <Characters />
         </Switch>
       </Router>
